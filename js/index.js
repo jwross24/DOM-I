@@ -126,3 +126,23 @@ headerNav.appendChild(seeMore);
 // Change nav text to green
 let headerNavA = document.querySelectorAll('header nav a');
 headerNavA.forEach((item) => (item.style.color = 'green'));
+
+let mainContent = document.getElementsByClassName('main-content')[0];
+let testButton = document.createElement('button');
+testButton.textContent = 'Click me!';
+mainContent.prepend(testButton);
+
+function toggleDate() {
+  let dateBox = document.querySelectorAll('.cta-text .date-box');
+  if (dateBox.length) {
+    document.querySelector('.cta-text').removeChild(dateBox[0]);
+  } else {
+    let d = new Date();
+    dateBox = document.createElement('div');
+    dateBox.setAttribute('class', 'date-box');
+    dateBox.innerHTML = d.getTime();
+    document.querySelector('.cta-text').appendChild(dateBox);
+  }
+}
+
+testButton.addEventListener('click', toggleDate);

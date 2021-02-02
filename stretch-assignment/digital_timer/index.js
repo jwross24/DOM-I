@@ -40,7 +40,7 @@ function startTimer() {
     if (currentMilliseconds > 9999) {
       clearInterval(x);
       let digits = document.getElementsByClassName('digit');
-      Array.from(digits).forEach((item) => (item.style.color = 'red'));
+      Array.from(digits).forEach((item) => item.classList.add('redDigit'));
       resetButton.removeAttribute('disabled');
     }
 
@@ -51,12 +51,11 @@ function startTimer() {
 function resetTimer() {
   currentMilliseconds = 0;
   let digits = document.getElementsByClassName('digit');
-  Array.from(digits).forEach((item) => (item.style.color = 'black'));
   Array.from(digits).forEach(function (item, index) {
-    if (index === 2) {
-      return;
+    item.classList.remove('redDigit');
+    if (index !== 2) {
+      item.innerHTML = '-';
     }
-    item.innerHTML = '-';
   });
   startButton.removeAttribute('disabled');
   resetButton.disabled = true;
